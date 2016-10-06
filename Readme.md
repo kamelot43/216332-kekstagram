@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
 * Студент: [Андрей Пудов](https://up.htmlacademy.ru/javascript/7/user/216332).
-* Наставник: `Неизвестно`.
+* Наставник: `Варя Степанова`.
 
 ---
 
