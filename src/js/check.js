@@ -9,12 +9,12 @@ var getMessage = function(a, b) {
     }
   }
   //Условие проверки первой переменной (числовое значение или нет?): 
-  if (typeof a === 'number') {
+  else if (typeof a === 'number') {
     var multiplicationOfVariable = b * 4;
     result = 'Переданное SVG-изображение содержит' + a + 'объектов и' + multiplicationOfVariable + 'атрибутов';
   }
   //Условие проверки первой переменной(массив или нет?):
-  if (Array.isArray(a) && !Array.isArray(b)) {
+  else if (Array.isArray(a) && !Array.isArray(b)) {
     var amountOfRedPoints = 0;
     for (var i = 0; i < a.length; i++) {
       amountOfRedPoints += a[i];
@@ -22,14 +22,16 @@ var getMessage = function(a, b) {
     }
   }
   //Условие проверки двух переменных (a и b массивы?):
-  if (Array.isArray(a) && Array.isArray(b)) {
+  else if (Array.isArray(a) && Array.isArray(b)) {
     var artifactsSquare = 0;
     for (var i = 0; i < a.length && b.length; i++) {
       artifactsSquare += a[i] * b[i];
       result = 'Общая площадь артефактов сжатия:' + artifactsSquare + 'пикселей';
     }
     //не получается применить последнее условию со значением 'Переданы некорректные данные'    
+  } else {
+    result = 'Переданы некорректные данные';
   }
   return result;
 }
-console.info(getMessage());
+console.info(getMessage(4,5));
