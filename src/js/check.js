@@ -1,5 +1,6 @@
-var result = '';
+
 var getMessage = function(a, b) {
+  var result = '';
   //Условие проверки первой переменной(булевное значение или нет?):	
   if (typeof a === 'boolean') {
     if (a === true) {
@@ -34,4 +35,4 @@ var getMessage = function(a, b) {
   }
   return result;
 }
-console.info(getMessage(4,5));
+console.info(getMessage());
