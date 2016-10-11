@@ -126,17 +126,14 @@
       // некорректно сработает даже очистка холста или нужно будет использовать
       // сложные рассчеты для координат прямоугольника, который нужно очистить.
       this._ctx.restore();
-      // Безуспешная попытка применить идею ненулевого числа оборотов (Дэвида Флэнагана).
-      this._ctx.beginPath();
-      this._ctx.strokeStyle ="#9E9696";
-      this._ctx.strokeRect(0,0,this._container.width, this._container.height); 
-      this._ctx.moveTo(100,100);
-      this._ctx.lineTo(100,200);
-      this._ctx.lineTo(200,200);
-      this._ctx.lineTo(200,100);
-      this._ctx.lineTo(100,100);
-      this._ctx.stroke();
-      this._ctx.fill("evenodd");      
+      // Безуспешная попытка применить идею ненулевого числа оборотов (Дэвида Флэнагана).      
+      this._ctx.strokeStyle = "rgba(0,0,0,0.7)";
+      this._ctx.lineWidth = 140;
+      this._ctx.setLineDash([15, 0]);
+      // Смещение первого штриха от начала линии.
+      this._ctx.lineDashOffset = 0;
+      this._ctx.strokeRect(0,0,this._container.width-8, this._container.height-8);
+
     },
 
 
