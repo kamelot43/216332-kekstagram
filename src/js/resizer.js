@@ -128,18 +128,20 @@
       //Область затемнения
       this._ctx.beginPath();
       this._ctx.fillStyle = "rgba(0,0,0,0.7)";
-      this._ctx.rect((-this._resizeConstraint.side / 1.5), (-this._resizeConstraint.side / 1.5), this._container.width, this._container.height);
+      this._ctx.rect(displX, displY, this._container.width, this._container.height);
       this._ctx.rect(
         (-this._resizeConstraint.side / 2) - this._ctx.lineWidth,
         (-this._resizeConstraint.side / 2) - this._ctx.lineWidth,
         this._resizeConstraint.side + this._ctx.lineWidth / 2,
         this._resizeConstraint.side + this._ctx.lineWidth / 2);
       this._ctx.fill("evenodd");
-      this._ctx.restore();
       //Отрисовка размеров картинки
       this._ctx.fillStyle = '#fff';
       this._ctx.font = "18px serif";
-      this._ctx.fillText(this._image.naturalWidth + ' х ' + this._image.naturalHeight, (this._container.height / 2) - 50, 60);
+      this._ctx.textAlign = 'center';
+      this._ctx.textBaseline = 'bottom';
+      this._ctx.fillText(this._image.naturalWidth + ' х ' + this._image.naturalHeight, 0, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth);
+      this._ctx.restore();
 
     },
 
