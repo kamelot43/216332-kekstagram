@@ -86,17 +86,7 @@
       // Параметры линии.
       // NB! Такие параметры сохраняются на время всего процесса отрисовки
       // canvas'a поэтому важно вовремя поменять их, если нужно начать отрисовку
-      // чего-либо с другой обводкой.
-
-      // Толщина линии.
-      this._ctx.lineWidth = 6;
-      // Цвет обводки.
-      this._ctx.strokeStyle = '#ffe753';
-      // Размер штрихов. Первый элемент массива задает длину штриха, второй
-      // расстояние между соседними штрихами.
-      this._ctx.setLineDash([15, 10]);
-      // Смещение первого штриха от начала линии.
-      this._ctx.lineDashOffset = 7;
+      // чего-либо с другой обводкой.     
 
       // Сохранение состояния канваса.
       this._ctx.save();
@@ -125,7 +115,35 @@
       // 0 0 находится в левом верхнем углу холста, в противном случае
       // некорректно сработает даже очистка холста или нужно будет использовать
       // сложные рассчеты для координат прямоугольника, который нужно очистить.
-      //Область затемнения
+      //Верхняя горизонтальная линия
+      for (var j=0;j<18;j++){
+        this._ctx.strokeStyle = 'yellow';  
+        this._ctx.beginPath();
+        this._ctx.arc(-225 + j*25,-225,3,0,Math.PI*2,true);
+        this._ctx.stroke();        
+      }
+      //Нижняя горизонтальная линия
+    for (var j=0;j<19;j++){
+        this._ctx.strokeStyle = 'yellow';
+        this._ctx.beginPath();
+        this._ctx.arc(-225 + j*25,225,3,0,Math.PI*2,true);
+        this._ctx.stroke();        
+      }
+      //Левая вертикальная линия
+    for (var i=0;i<17;i++){
+        this._ctx.strokeStyle = 'yellow';
+        this._ctx.beginPath();
+        this._ctx.arc(-225,-225+i*27,3,0,Math.PI*2,true);
+        this._ctx.stroke();        
+      }
+      //Правая вертикальная линия
+     for (var i=0;i<17;i++){
+        this._ctx.strokeStyle = 'yellow';
+        this._ctx.beginPath();
+        this._ctx.arc(225,-225+i*27,3,0,Math.PI*2,true);
+        this._ctx.stroke();        
+      }
+
       this._ctx.beginPath();
       this._ctx.fillStyle = "rgba(0,0,0,0.7)";
       this._ctx.rect(displX, displY, this._container.width, this._container.height);
