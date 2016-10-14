@@ -116,31 +116,31 @@
       // некорректно сработает даже очистка холста или нужно будет использовать
       // сложные рассчеты для координат прямоугольника, который нужно очистить.
       //Верхняя горизонтальная линия
-      for (var j=0;j<18;j++){
+      for (var j=0;j<19;j++){
         this._ctx.strokeStyle = 'yellow';  
         this._ctx.beginPath();
-        this._ctx.arc(-225 + j*25,-225,3,0,Math.PI*2,true);
+        this._ctx.arc(-this._resizeConstraint.side / 2 + j*25,-this._resizeConstraint.side / 2,2,0,Math.PI*2,true);
         this._ctx.stroke();        
       }
       //Нижняя горизонтальная линия
     for (var j=0;j<19;j++){
         this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
-        this._ctx.arc(-225 + j*25,225,3,0,Math.PI*2,true);
+        this._ctx.arc(-this._resizeConstraint.side / 2 + j*25,this._resizeConstraint.side / 2,2,0,Math.PI*2,true);
         this._ctx.stroke();        
       }
       //Левая вертикальная линия
-    for (var i=0;i<17;i++){
+    for (var i=0;i<19;i++){
         this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
-        this._ctx.arc(-225,-225+i*27,3,0,Math.PI*2,true);
+        this._ctx.arc(-this._resizeConstraint.side / 2,-this._resizeConstraint.side / 2+i*25,2,0,Math.PI*2,true);
         this._ctx.stroke();        
       }
       //Правая вертикальная линия
-     for (var i=0;i<17;i++){
+     for (var i=0;i<19;i++){
         this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
-        this._ctx.arc(225,-225+i*27,3,0,Math.PI*2,true);
+        this._ctx.arc(this._resizeConstraint.side / 2,-this._resizeConstraint.side / 2+i*25,2,0,Math.PI*2,true);
         this._ctx.stroke();        
       }
 
