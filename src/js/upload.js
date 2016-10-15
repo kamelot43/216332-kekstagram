@@ -71,6 +71,37 @@
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
    */
+  //Объявляем переменные для работы с валидацией формы
+  var coordinateX = document.querySelector('#resize-x');
+  var coordinateY = document.querySelector('#resize-y');
+  var coordinateSide = document.querySelector('#resize-side');
+  coordinateX.min = 0;
+  coordinateY.min = 0;
+  coordinateSide.min = 0;
+
+  var validationForm = function(coordinateXField, coordinateYField, coordinateSideField) {
+    if (coordinateXField + coordinateYField > currentResizer._image.naturalWidth) {
+      return false;
+    }
+    if (coordinateYField + coordinateSideField > currentResizer._image.naturalHeight) {
+      return false;
+    }
+    return true;
+  };
+  coordinateX.onchange = function() {
+    resizeFormIsValid(coordinateX.value, coordinateY.value, coordinateSide.value);
+  };
+
+  coordinateY.onchange = function() {
+    resizeFormIsValid(coordinateX.value, coordinateY.value, coordinateSide.value);
+  };
+
+  coordinateSide.onchange = function() {
+    resizeFormIsValid(coordinateX.value, coordinateY.value, coordinateSide.value);
+  };
+
+  validationForm(coordinateX.value, coordinateY.value, coordinateSide.value);
+
   var resizeFormIsValid = function() {
     return true;
   };
