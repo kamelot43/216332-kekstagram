@@ -116,73 +116,46 @@
       // некорректно сработает даже очистка холста или нужно будет использовать
       // сложные рассчеты для координат прямоугольника, который нужно очистить.
       //Верхняя горизонтальная линия
-<<<<<<< HEAD
-      for (var j = 0; j < 19; j++) {
-        this._ctx.strokeStyle = 'yellow';
-        this._ctx.beginPath();
-        this._ctx.arc(-this._resizeConstraint.side / 2 + j * 25, -this._resizeConstraint.side / 2, 2, 0, Math.PI * 2, true);
-        this._ctx.stroke();
-=======
       for (var j=0;j<19;j++){
-        this._ctx.strokeStyle = 'yellow';  
+        this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
         this._ctx.arc(-this._resizeConstraint.side / 2 + j*25,-this._resizeConstraint.side / 2,2,0,Math.PI*2,true);
-        this._ctx.stroke();        
->>>>>>> 5833831e51e937e9daa314234f6825a088e4f336
+        this._ctx.stroke();
       }
       //Нижняя горизонтальная линия
-      for ( j = 0; j < 19; j++) {
+    for (var j=0;j<19;j++){
         this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
-<<<<<<< HEAD
-        this._ctx.arc(-this._resizeConstraint.side / 2 + j * 25, this._resizeConstraint.side / 2, 2, 0, Math.PI * 2, true);
-        this._ctx.stroke();
-      }
-      //Левая вертикальная линия
-      for (var i = 0; i < 19; i++) {
-        this._ctx.strokeStyle = 'yellow';
-        this._ctx.beginPath();
-        this._ctx.arc(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 + i * 25, 2, 0, Math.PI * 2, true);
-        this._ctx.stroke();
-      }
-      //Правая вертикальная линия
-      for ( i = 0; i < 19; i++) {
-        this._ctx.strokeStyle = 'yellow';
-        this._ctx.beginPath();
-        this._ctx.arc(this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 + i * 25, 2, 0, Math.PI * 2, true);
-        this._ctx.stroke();
-=======
         this._ctx.arc(-this._resizeConstraint.side / 2 + j*25,this._resizeConstraint.side / 2,2,0,Math.PI*2,true);
-        this._ctx.stroke();        
+        this._ctx.stroke();
       }
       //Левая вертикальная линия
     for (var i=0;i<19;i++){
         this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
         this._ctx.arc(-this._resizeConstraint.side / 2,-this._resizeConstraint.side / 2+i*25,2,0,Math.PI*2,true);
-        this._ctx.stroke();        
+        this._ctx.stroke();
       }
       //Правая вертикальная линия
      for (var i=0;i<19;i++){
         this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
         this._ctx.arc(this._resizeConstraint.side / 2,-this._resizeConstraint.side / 2+i*25,2,0,Math.PI*2,true);
-        this._ctx.stroke();        
->>>>>>> 5833831e51e937e9daa314234f6825a088e4f336
+        this._ctx.stroke();
       }
 
       this._ctx.beginPath();
-      this._ctx.fillStyle = 'rgba(0,0,0,0.7)';
+      this._ctx.fillStyle = "rgba(0,0,0,0.7)";
       this._ctx.rect(displX, displY, this._container.width, this._container.height);
       this._ctx.rect(
         (-this._resizeConstraint.side / 2) - this._ctx.lineWidth,
         (-this._resizeConstraint.side / 2) - this._ctx.lineWidth,
         this._resizeConstraint.side + this._ctx.lineWidth / 2,
         this._resizeConstraint.side + this._ctx.lineWidth / 2);
-      this._ctx.fill('evenodd');
+      this._ctx.fill("evenodd");
       //Отрисовка размеров картинки
       this._ctx.fillStyle = '#fff';
-      this._ctx.font = '18px serif';
+      this._ctx.font = "18px serif";
       this._ctx.textAlign = 'center';
       this._ctx.textBaseline = 'bottom';
       this._ctx.fillText(this._image.naturalWidth + ' х ' + this._image.naturalHeight, 0, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth);
