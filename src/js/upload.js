@@ -74,24 +74,34 @@
   //Объявляем переменные для работы с валидацией формы
   var coordinateX = document.querySelector('#resize-x');
   var coordinateY = document.querySelector('#resize-y');
-  var coordinateSide = document.querySelector('#resize-side');
+  var coordinateSize = document.querySelector('#resize-size');
+  var resizeFwd = document.getElementById('resize-fwd');  
   coordinateX.min = 0;
-  coordinateY.min = 0; 
+  coordinateY.min = 0;
+  coordinateSize.min = 0;  
 
-  var validationForm = function(coordinateXField, coordinateYField, coordinateSideField) {
-    if (coordinateXField + coordinateYField > currentResizer._image.naturalWidth) {
+  var validationForm = function(coordinateXField, coordinateYField, coordinateSizeField) {
+  var imageWidth = currentResizer._image.naturalWidth;
+  var imageHeight = currentResizer._image.naturalHeight;
+    if (coordinateXField + coordinateYField > imageWidth) {
       return false;
     }
-    if (coordinateYField + coordinateSideField > currentResizer._image.naturalHeight) {
+    if (coordinateYField + coordinateSideField > imageHeight) {
       return false;
-    }
-    return true;  
-    };
-  coordinateX.value = 1;
-  coordinateY.value = 1;
-  coordinateSide.value = 2;   
-  
-  validationForm(coordinateX.value, coordinateY.value, coordinateSide.value);
+    }	
+    return (resizeFwd.disabled = false);
+  };
+    coordinateX.onchange = function() {
+    resizeFormIsValid(coordinateX.value, coordinateY, coordinateSize);
+  };
+
+   coordinateY.onchange = function() {
+    resizeFormIsValid(coordinateX, coordinateY.value, coordinateSize);
+  };
+
+  coordinateSize.onchange = function() {
+    resizeFormIsValid(coordinateX, coordinateY, coordinateSize.value);
+  };
 
   var resizeFormIsValid = function() {
     return true;
