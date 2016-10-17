@@ -92,6 +92,7 @@
       resizeFwd.disabled = false;
     }
   };
+<<<<<<< HEAD
   coordinateX.oninput = function() {
     validationForm();
   };
@@ -100,6 +101,16 @@
   };
   coordinateSize.oninput = function() {
     validationForm();
+=======
+    coordinateX.onchange = function() {
+    validationForm(coordinateX.value, coordinateY.value, coordinateSize.value);
+  };
+   coordinateY.onchange = function() {
+   validationForm(coordinateX.value, coordinateY.value, coordinateSize.value);
+  };
+   coordinateSize.onchange = function() {
+   validationForm(coordinateX.value, coordinateY.value, coordinateSize.value);
+>>>>>>> 9055c8d83d76e4f76a9befddbd737bc5b6f48d9f
   };
 
   var resizeFormIsValid = function() {
