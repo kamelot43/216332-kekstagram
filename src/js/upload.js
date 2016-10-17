@@ -83,24 +83,22 @@
   var validationForm = function(coordinateXField, coordinateYField, coordinateSizeField) {
   var imageWidth = currentResizer._image.naturalWidth;
   var imageHeight = currentResizer._image.naturalHeight;
-    if (coordinateXField + coordinateYField > imageWidth) {
-      return false;
+    if (coordinateXField + coordinateSizeField > imageWidth) {
+      resizeFwd.disabled = true;
     }
-    if (coordinateYField + coordinateSideField > imageHeight) {
-      return false;
+    if (coordinateYField + coordinateSizeField > imageHeight) {
+      resizeFwd.disabled = true;
     }	
-    return (resizeFwd.disabled = false);
+      resizeFwd.disabled = false;
   };
     coordinateX.onchange = function() {
-    resizeFormIsValid(coordinateX.value, coordinateY, coordinateSize);
+    validationForm(coordinateX.value, coordinateY, coordinateSize);
   };
-
    coordinateY.onchange = function() {
-    resizeFormIsValid(coordinateX, coordinateY.value, coordinateSize);
+   validationForm(coordinateX, coordinateY.value, coordinateSize);
   };
-
-  coordinateSize.onchange = function() {
-    resizeFormIsValid(coordinateX, coordinateY, coordinateSize.value);
+   coordinateSize.onchange = function() {
+   validationForm(coordinateX, coordinateY, coordinateSize.value);
   };
 
   var resizeFormIsValid = function() {
