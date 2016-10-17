@@ -80,25 +80,26 @@
   coordinateY.min = 0;
   coordinateSize.min = 0;
 
-  var validationForm = function(coordinateXField, coordinateYField, coordinateSizeField) {
-  var imageWidth = currentResizer._image.naturalWidth;
-  var imageHeight = currentResizer._image.naturalHeight;
-    if (coordinateXField + coordinateSizeField > imageWidth) {
+  var validationForm = function() {
+    var x = Number(coordinateX.value);
+    var y = Number(coordinateY.value);
+    var size = Number(coordinateSize.value);
+    var imageWidth = currentResizer._image.naturalWidth;
+    var imageHeight = currentResizer._image.naturalHeight;
+    if ((x + size > imageWidth) || (y + size > imageHeight)) {
       resizeFwd.disabled = true;
-    }
-    if (coordinateYField + coordinateSizeField > imageHeight) {
-      resizeFwd.disabled = true;
-    }
+    } else {
       resizeFwd.disabled = false;
+    }
   };
-    coordinateX.onchange = function() {
-    validationForm(coordinateX.value, coordinateY, coordinateSize);
+  coordinateX.oninput = function() {
+    validationForm();
   };
-   coordinateY.onchange = function() {
-   validationForm(coordinateX, coordinateY.value, coordinateSize);
+  coordinateY.oninput = function() {
+    validationForm();
   };
-   coordinateSize.onchange = function() {
-   validationForm(coordinateX, coordinateY, coordinateSize.value);
+  coordinateSize.oninput = function() {
+    validationForm();
   };
 
   var resizeFormIsValid = function() {
