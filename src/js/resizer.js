@@ -31,15 +31,15 @@
 
       // Размер меньшей стороны изображения.
       var side = Math.min(
-        this._container.width * INITIAL_SIDE_RATIO,
-        this._container.height * INITIAL_SIDE_RATIO);
+          this._container.width * INITIAL_SIDE_RATIO,
+          this._container.height * INITIAL_SIDE_RATIO);
 
       // Изначально предлагаемое кадрирование — часть по центру с размером в 3/4
       // от размера меньшей стороны.
       this._resizeConstraint = new Square(
-        this._container.width / 2 - side / 2,
-        this._container.height / 2 - side / 2,
-        side);
+          this._container.width / 2 - side / 2,
+          this._container.height / 2 - side / 2,
+          side);
 
       // Отрисовка изначального состояния канваса.
       this.setConstraint();
@@ -86,7 +86,7 @@
       // Параметры линии.
       // NB! Такие параметры сохраняются на время всего процесса отрисовки
       // canvas'a поэтому важно вовремя поменять их, если нужно начать отрисовку
-      // чего-либо с другой обводкой.
+      // чего-либо с другой обводкой.     
 
       // Сохранение состояния канваса.
       this._ctx.save();
@@ -100,95 +100,73 @@
       // нужно отрисовать и координаты его верхнего левого угла.
       // Координаты задаются от центра холста.
       this._ctx.drawImage(this._image, displX, displY);
+	  
 
       // Отрисовка прямоугольника, обозначающего область изображения после
       // кадрирования. Координаты задаются от центра.
       this._ctx.strokeRect(
-        (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
-        (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
-        this._resizeConstraint.side - this._ctx.lineWidth / 2,
-        this._resizeConstraint.side - this._ctx.lineWidth / 2);
+          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
+          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
+          this._resizeConstraint.side - this._ctx.lineWidth / 2,
+          this._resizeConstraint.side - this._ctx.lineWidth / 2); 
 
       // Восстановление состояния канваса, которое было до вызова ctx.save
       // и последующего изменения системы координат. Нужно для того, чтобы
-      // следующий кадр рисовался с привычной системой координат, где точка
+      // следующий кадр рисовался с привычной системой координат, где точка 
       // 0 0 находится в левом верхнем углу холста, в противном случае
       // некорректно сработает даже очистка холста или нужно будет использовать
-      // сложные рассчеты для координат прямоугольника, который нужно очистить.
-      //Верхняя горизонтальная линия
-<<<<<<< HEAD
-      for (var j = 0; j < 19; j++) {
-        this._ctx.strokeStyle = 'yellow';
-        this._ctx.beginPath();
-        this._ctx.arc(-this._resizeConstraint.side / 2 + j * 25, -this._resizeConstraint.side / 2, 2, 0, Math.PI * 2, true);
-        this._ctx.stroke();
-=======
-      for (var j=0;j<19;j++){
+      // сложные рассчеты для координат прямоугольника, который нужно очистить.	  
+	  //Отрисовка затемненного контура           
+          
+      // Промежуточный результат. Осталось понять как сдвинуться в верхний левый угол
+	  // не явным образом.
+	  for (var j=0;j<19;j++){
         this._ctx.strokeStyle = 'yellow';  
         this._ctx.beginPath();
         this._ctx.arc(-this._resizeConstraint.side / 2 + j*25,-this._resizeConstraint.side / 2,2,0,Math.PI*2,true);
-        this._ctx.stroke();        
->>>>>>> 5833831e51e937e9daa314234f6825a088e4f336
-      }
-      //Нижняя горизонтальная линия
-      for ( j = 0; j < 19; j++) {
-        this._ctx.strokeStyle = 'yellow';
-        this._ctx.beginPath();
-<<<<<<< HEAD
-        this._ctx.arc(-this._resizeConstraint.side / 2 + j * 25, this._resizeConstraint.side / 2, 2, 0, Math.PI * 2, true);
         this._ctx.stroke();
       }
-      //Левая вертикальная линия
-      for (var i = 0; i < 19; i++) {
+	  
+	  for (var j=0;j<19;j++){
         this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
-        this._ctx.arc(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 + i * 25, 2, 0, Math.PI * 2, true);
-        this._ctx.stroke();
-      }
-      //Правая вертикальная линия
-      for ( i = 0; i < 19; i++) {
-        this._ctx.strokeStyle = 'yellow';
-        this._ctx.beginPath();
-        this._ctx.arc(this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 + i * 25, 2, 0, Math.PI * 2, true);
-        this._ctx.stroke();
-=======
         this._ctx.arc(-this._resizeConstraint.side / 2 + j*25,this._resizeConstraint.side / 2,2,0,Math.PI*2,true);
-        this._ctx.stroke();        
+        this._ctx.stroke();
       }
-      //Левая вертикальная линия
-    for (var i=0;i<19;i++){
+	  
+	  for (var i=0;i<19;i++){
         this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
         this._ctx.arc(-this._resizeConstraint.side / 2,-this._resizeConstraint.side / 2+i*25,2,0,Math.PI*2,true);
-        this._ctx.stroke();        
+        this._ctx.stroke();
       }
-      //Правая вертикальная линия
-     for (var i=0;i<19;i++){
+	  
+	   for (var i=0;i<19;i++){
         this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
         this._ctx.arc(this._resizeConstraint.side / 2,-this._resizeConstraint.side / 2+i*25,2,0,Math.PI*2,true);
-        this._ctx.stroke();        
->>>>>>> 5833831e51e937e9daa314234f6825a088e4f336
+        this._ctx.stroke();
       }
-
-      this._ctx.beginPath();
-      this._ctx.fillStyle = 'rgba(0,0,0,0.7)';
-      this._ctx.rect(displX, displY, this._container.width, this._container.height);
+	  
+	  this._ctx.beginPath();
+	  this._ctx.fillStyle ="rgba(0,0,0,0.7)"; 
+      this._ctx.rect((-this._resizeConstraint.side/1.5),(-this._resizeConstraint.side/1.5),this._container.width,this._container.height);
       this._ctx.rect(
-        (-this._resizeConstraint.side / 2) - this._ctx.lineWidth,
-        (-this._resizeConstraint.side / 2) - this._ctx.lineWidth,
-        this._resizeConstraint.side + this._ctx.lineWidth / 2,
-        this._resizeConstraint.side + this._ctx.lineWidth / 2);
-      this._ctx.fill('evenodd');
+          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth ,
+          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth ,
+          this._resizeConstraint.side + this._ctx.lineWidth / 2,
+          this._resizeConstraint.side + this._ctx.lineWidth / 2);    
+      this._ctx.fill("evenodd");		  
+      this._ctx.restore(); 
+	 	 
+        
       //Отрисовка размеров картинки
       this._ctx.fillStyle = '#fff';
-      this._ctx.font = '18px serif';
-      this._ctx.textAlign = 'center';
-      this._ctx.textBaseline = 'bottom';
-      this._ctx.fillText(this._image.naturalWidth + ' х ' + this._image.naturalHeight, 0, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth);
-      this._ctx.restore();
+      this._ctx.font = "18px serif";
+      this._ctx.fillText(this._image.naturalWidth + ' х ' + this._image.naturalHeight, (this._container.height/2) - 50, 60);
 
     },
+
 
     /**
      * Включение режима перемещения. Запоминается текущее положение курсора,
@@ -222,8 +200,8 @@
      */
     updatePosition: function(x, y) {
       this.moveConstraint(
-        this._cursorPosition.x - x,
-        this._cursorPosition.y - y);
+          this._cursorPosition.x - x,
+          this._cursorPosition.y - y);
       this._cursorPosition = new Coordinate(x, y);
     },
 
@@ -283,9 +261,9 @@
      */
     moveConstraint: function(deltaX, deltaY, deltaSide) {
       this.setConstraint(
-        this._resizeConstraint.x + (deltaX || 0),
-        this._resizeConstraint.y + (deltaY || 0),
-        this._resizeConstraint.side + (deltaSide || 0));
+          this._resizeConstraint.x + (deltaX || 0),
+          this._resizeConstraint.y + (deltaY || 0),
+          this._resizeConstraint.side + (deltaSide || 0));
     },
 
     /**
@@ -343,7 +321,9 @@
       var temporaryCtx = temporaryCanvas.getContext('2d');
       temporaryCanvas.width = this._resizeConstraint.side;
       temporaryCanvas.height = this._resizeConstraint.side;
-      temporaryCtx.drawImage(this._image, -this._resizeConstraint.x, -this._resizeConstraint.y);
+      temporaryCtx.drawImage(this._image,
+          -this._resizeConstraint.x,
+          -this._resizeConstraint.y);
       imageToExport.src = temporaryCanvas.toDataURL('image/png');
 
       return imageToExport;
