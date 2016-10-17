@@ -92,13 +92,13 @@
       resizeFwd.disabled = false;
   };
     coordinateX.onchange = function() {
-    validationForm(coordinateX.value, coordinateY, coordinateSize);
+    validationForm(coordinateX.value, coordinateY.value, coordinateSize.value);
   };
    coordinateY.onchange = function() {
-   validationForm(coordinateX, coordinateY.value, coordinateSize);
+   validationForm(coordinateX.value, coordinateY.value, coordinateSize.value);
   };
    coordinateSize.onchange = function() {
-   validationForm(coordinateX, coordinateY, coordinateSize.value);
+   validationForm(coordinateX.value, coordinateY.value, coordinateSize.value);
   };
 
   var resizeFormIsValid = function() {
