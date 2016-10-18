@@ -86,7 +86,7 @@
       // Параметры линии.
       // NB! Такие параметры сохраняются на время всего процесса отрисовки
       // canvas'a поэтому важно вовремя поменять их, если нужно начать отрисовку
-      // чего-либо с другой обводкой.     
+      // чего-либо с другой обводкой.
 
       // Сохранение состояния канваса.
       this._ctx.save();
@@ -116,46 +116,46 @@
       // некорректно сработает даже очистка холста или нужно будет использовать
       // сложные рассчеты для координат прямоугольника, который нужно очистить.
       //Верхняя горизонтальная линия
-      for (var j=0;j<19;j++){
-        this._ctx.strokeStyle = 'yellow';  
+      for (var j = 0; j < 19; j++) {
+        this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
-        this._ctx.arc(-this._resizeConstraint.side / 2 + j*25,-this._resizeConstraint.side / 2,2,0,Math.PI*2,true);
-        this._ctx.stroke();        
+        this._ctx.arc(-this._resizeConstraint.side / 2 + j * 25, -this._resizeConstraint.side / 2, 2, 0, Math.PI * 2, true);
+        this._ctx.stroke();
       }
       //Нижняя горизонтальная линия
-    for (var j=0;j<19;j++){
+      for ( j = 0; j < 19; j++) {
         this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
-        this._ctx.arc(-this._resizeConstraint.side / 2 + j*25,this._resizeConstraint.side / 2,2,0,Math.PI*2,true);
-        this._ctx.stroke();        
+        this._ctx.arc(-this._resizeConstraint.side / 2 + j * 25, this._resizeConstraint.side / 2, 2, 0, Math.PI * 2, true);
+        this._ctx.stroke();
       }
       //Левая вертикальная линия
-    for (var i=0;i<19;i++){
+      for (var i = 0; i < 19; i++) {
         this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
-        this._ctx.arc(-this._resizeConstraint.side / 2,-this._resizeConstraint.side / 2+i*25,2,0,Math.PI*2,true);
-        this._ctx.stroke();        
+        this._ctx.arc(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 + i * 25, 2, 0, Math.PI * 2, true);
+        this._ctx.stroke();
       }
       //Правая вертикальная линия
-     for (var i=0;i<19;i++){
+      for ( i = 0; i < 19; i++) {
         this._ctx.strokeStyle = 'yellow';
         this._ctx.beginPath();
-        this._ctx.arc(this._resizeConstraint.side / 2,-this._resizeConstraint.side / 2+i*25,2,0,Math.PI*2,true);
-        this._ctx.stroke();        
+        this._ctx.arc(this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 + i * 25, 2, 0, Math.PI * 2, true);
+        this._ctx.stroke();
       }
 
       this._ctx.beginPath();
-      this._ctx.fillStyle = "rgba(0,0,0,0.7)";
+      this._ctx.fillStyle = 'rgba(0,0,0,0.7)';
       this._ctx.rect(displX, displY, this._container.width, this._container.height);
       this._ctx.rect(
         (-this._resizeConstraint.side / 2) - this._ctx.lineWidth,
         (-this._resizeConstraint.side / 2) - this._ctx.lineWidth,
         this._resizeConstraint.side + this._ctx.lineWidth / 2,
         this._resizeConstraint.side + this._ctx.lineWidth / 2);
-      this._ctx.fill("evenodd");
+      this._ctx.fill('evenodd');
       //Отрисовка размеров картинки
       this._ctx.fillStyle = '#fff';
-      this._ctx.font = "18px serif";
+      this._ctx.font = '18px serif';
       this._ctx.textAlign = 'center';
       this._ctx.textBaseline = 'bottom';
       this._ctx.fillText(this._image.naturalWidth + ' х ' + this._image.naturalHeight, 0, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth);
