@@ -123,7 +123,7 @@
     var day = 1000 * 60 * 60 * 24;
     var today = new Date();
     var timeToday = today.getTime();
-    var birthday = new Date('12/09/1991');
+    var birthday = new Date(today.getFullYear(), 12, 9);
     var timeBirthday = birthday.getTime();
     var timeIsUp = Math.round((timeToday - timeBirthday) / day);
     //
