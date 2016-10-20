@@ -105,6 +105,38 @@
   var resizeFormIsValid = function() {
     return true;
   };
+  //Объявление переменных для работы с cookies.
+  var filter = document.getElementsByName('upload-filter');
+  var original = document.querySelector('#upload-filter-none');
+  var chrome = document.querySelector('#upload-filter-chrome');
+  var sepia = document.querySelector('#upload-filter-sepia');
+  var marvin = document.querySelector('#upload-filter-marvin');
+
+  //Добавление обработчика событий при клике на выбранный фильтр.
+  original.addEventListener('click', createCookies);
+  chrome.addEventListener('click', createCookies);
+  sepia.addEventListener('click', createCookies);
+  marvin.addEventListener('click', createCookies);
+
+  var createCookies = function() {
+    //введение дополнительных переменных для вычисления времени.
+    var day = 1000 * 60 * 60 * 24;
+    var today = new Date();
+    var timeToday = today.getTime();
+    var birthday = new Date(today.getFullYear(), 12, 9);
+    var timeBirthday = birthday.getTime();
+    var timeIsUp = Math.round((timeToday - timeBirthday) / day);
+    //
+    var x = filter.value;
+    if (x.checked = true) {
+    Cookies.set('upload-filter', 'x', { expires: timeIsUp});
+    }else {
+      return false;
+    }
+  };
+
+
+
 
   /**
    * Форма загрузки изображения.
