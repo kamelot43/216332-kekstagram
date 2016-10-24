@@ -123,7 +123,7 @@ var getPictureElement = function(picture) {
   image.onerror = function() {
     pictureElement.classList.add('picture-load-failure');
   };
-  pictureElement.querySelector('img').src = picture.url;
+  image.src = picture.url;
   return pictureElement;
 };
 var renderPictures = function(pictures) {
