@@ -5,11 +5,10 @@ var getMessage = function(a, b) {
   if (typeof a === 'boolean') {
     if (a === true) {
       result = 'Переданное GIF-изображение анимировано и содержит' + b + 'кадров';
-    } else {
+    } else  {
       result = 'Переданное GIF-изображение не анимировано';
     }
-  };
-  else if (typeof a === 'number') {
+  } else if (typeof a === 'number') {
     var multiplicationOfVariable = b * 4;
     result = 'Переданное SVG-изображение содержит' + a + 'объектов и' + multiplicationOfVariable + 'атрибутов';
   } else if (Array.isArray(a) && !Array.isArray(b)) {
