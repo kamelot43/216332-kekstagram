@@ -119,25 +119,17 @@
   marvin.addEventListener('click', createCookies);
 
   var createCookies = function() {
-    //введение дополнительных переменных для вычисления времени.
+   //введение дополнительных переменных для вычисления времени.
     var day = 1000 * 60 * 60 * 24;
     var today = new Date();
     var timeToday = today.getTime();
     var birthday = new Date(today.getFullYear(), 12, 9);
     var timeBirthday = birthday.getTime();
     var timeIsUp = Math.round((timeToday - timeBirthday) / day);
-    //
-    var x = filter.value;
-    if (x.checked = true) {
-    Cookies.set('upload-filter', 'x', { expires: timeIsUp});
-    }else {
-      return false;
+    if (filter.checked === true) {
+      window.Cookies.set('upload-filter', 'filter.value', { expires: timeIsUp});
     }
   };
-
-
-
-
   /**
    * Форма загрузки изображения.
    * @type {HTMLFormElement}
