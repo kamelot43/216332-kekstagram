@@ -1,11 +1,9 @@
 'use strict';
-module.exports = (function() {
-//Набор переменных для работы с модулем review.js
-  var container = document.querySelector('.pictures');
-  var template = document.querySelector('template');
-  var templateContainer = 'content' in template ? template.content : template;
-
   var getPictureElement = function(picture) {
+    //Набор переменных для работы с модулем review.js
+    var container = document.querySelector('.pictures');
+    var template = document.querySelector('template');
+    var templateContainer = 'content' in template ? template.content : template;
     var pictureElement = templateContainer.querySelector('.picture').cloneNode(true);
     pictureElement.querySelector('.picture-likes').textContent = picture.likes;
     pictureElement.querySelector('.picture-comments').textContent = picture.comments;
@@ -19,4 +17,4 @@ module.exports = (function() {
     image.src = picture.url;
     return pictureElement;
   };
- })();
+module.exports = getPictureElement;
