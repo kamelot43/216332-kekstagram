@@ -69,4 +69,3 @@ module.exports = function runESLint(eslintConfig, paths) {
     exit(1);
   }
 };
-
