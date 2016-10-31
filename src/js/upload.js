@@ -7,7 +7,7 @@
 
 'use strict';
 
-module.exports = (function() {
+(module.exports = function() {
   /** @enum {string} */
   var FileType = {
     'GIF': '',

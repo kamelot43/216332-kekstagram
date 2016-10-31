@@ -1,4 +1,5 @@
-var getMessage = function(a, b) {
+'use strict';
+(function getMessage(a, b) {
   var result = '';
   if (typeof a === 'boolean') {
     if (a === true) {
@@ -17,7 +18,7 @@ var getMessage = function(a, b) {
     }
   }else if (Array.isArray(a) && Array.isArray(b)) {
     var artifactsSquare = 0;
-    for (var i = 0; i < a.length && b.length; i++) {
+    for (i = 0; i < a.length && b.length; i++) {
       artifactsSquare += a[i] * b[i];
       result = 'Общая площадь артефактов сжатия:' + artifactsSquare + 'пикселей';
     }
@@ -25,4 +26,4 @@ var getMessage = function(a, b) {
     result = 'Переданы некорректные данные';
   }
   return result;
-}
+})();
