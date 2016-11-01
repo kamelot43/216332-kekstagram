@@ -65,7 +65,6 @@ module.exports = function runESLint(eslintConfig, paths) {
       ' ' + pluralize('error', report.errorCount) + ', ' +
       pluralize('warning', report.warningCount)).red.bold
     );
-
     exit(1);
   }
 };
