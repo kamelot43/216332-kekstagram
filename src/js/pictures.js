@@ -1,6 +1,7 @@
 'use strict';
 var getPictureElement = require('./review');
 var connect = require('./load');
+var gallery = require('./gallery');
 
 (module.exports = function() {
   var container = document.querySelector('.pictures');
@@ -13,6 +14,7 @@ var connect = require('./load');
       container.appendChild(getPictureElement(picture));
     });
     filter.classList.remove('hidden');
+    gallery.setPictures(images);
   };
   connect(DATA_BASE_URL, renderPictures);
 })();

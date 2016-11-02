@@ -1,4 +1,5 @@
 'use strict';
+var gallery = require('./gallery');
 var getPictureElement = function(picture) {
   //Набор переменных для работы с модулем review.js
   var template = document.querySelector('template');
@@ -15,5 +16,8 @@ var getPictureElement = function(picture) {
   };
   image.src = picture.url;
   return pictureElement;
+  /*pictureElement.addEventListener('click',someFunction);//Обработчик клика по блоку с фотографией, который будет вызывать метод show с номером нажатой фотографии.
+   this.prototype.someFunction = function() {
+    gallery.show()//Что сюда нужно вставить не понятно.*/
 };
 module.exports = getPictureElement;
