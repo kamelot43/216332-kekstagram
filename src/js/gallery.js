@@ -31,8 +31,8 @@ Gallery.prototype.show = function(number) {
     }else{
       that.setActivePicture(number++);
     }
+    this.setActivePicture(number);// Вызывает метод setActivePicture, передав в него параметром число, которое было передано параметром в show;
   };
-  this.setActivePicture(number);// Вызывает метод setActivePicture, передав в него параметром число, которое было передано параметром в show;
 
 
 ////////////////////////////////////////////////////////////////////
