@@ -10,11 +10,11 @@ var gallery = require('./gallery');
   var DATA_BASE_URL = 'http://localhost:1507/api/pictures';
 
   var renderPictures = function(pictures) {
-    pictures.forEach(function(picture) {
-      container.appendChild(getPictureElement(picture));
+    pictures.forEach(function(picture, index) {
+      container.appendChild(getPictureElement(picture, index));
     });
     filter.classList.remove('hidden');
-    gallery.setPictures(images);
+    gallery.setPictures(pictures);
   };
   connect(DATA_BASE_URL, renderPictures);
 })();

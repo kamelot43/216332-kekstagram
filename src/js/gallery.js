@@ -3,9 +3,9 @@
 //ФУНКЦИЯ-КОНСТРУКТОР GALLERY И ЕЕ ОБЪЕКТ ПРОТОТИП
 var Gallery = function() {
   this.activePicture = 0;
-  this.elementPhoto = document.querySelector('.gallery-overlay');
-  this.closeGallery = document.querySelector('.gallery-overlay-close');
-  this.overlayImage = document.querySelector('.gallery-overlay-image');
+  this.elementPhoto = document.querySelector('.gallery-overlay');//элемент фотогалереи с классом
+  this.closeGallery = document.querySelector('.gallery-overlay-close');//элемент закрытия галереи с классом
+  this.overlayImage = document.querySelector('.gallery-overlay-image');//фотография с классом
   this.galleryLikes = document.querySelector('.likes-count');
   this.galleryComments = document.querySelector('.comments-count');
 };
@@ -17,7 +17,7 @@ Gallery.prototype.setPictures = function(pictures) {
 
 ////////////////////////////////////////////////////////////////////
 //ДОБАВЛЕНИЕ МЕТОДА show
-Gallery.prototype.show = function(number) {
+Gallery.prototype.show = function(num) {
   this.elementPhoto.classList.remove('invisible');// Показывает фотогалерею, убирая у ее DOM-элемента класс invisible.
 //Обработчики событий (2 шт.):
   this.closeGallery.onclick = function() {
@@ -29,9 +29,9 @@ Gallery.prototype.show = function(number) {
     if (that.activePicture === that.pictures.length - 1) {
       that.setActivePicture(0);
     }else{
-      that.setActivePicture(number++);
+      that.setActivePicture(num++);
     }
-    this.setActivePicture(number);// Вызывает метод setActivePicture, передав в него параметром число, которое было передано параметром в show;
+    this.setActivePicture(num);// Вызывает метод setActivePicture, передав в него параметром число, которое было передано параметром в show;
   };
 
 
