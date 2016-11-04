@@ -1,9 +1,9 @@
 'use strict';
-var getPictureElement = require('.picture');
+var getPictureElement = require('./picture');
 var connect = require('./load');
 var gallery = require('./gallery');
 
-(module.exports = function() {
+var showPictures = (function() {
   var container = document.querySelector('.pictures');
   var filter = document.querySelector('.filters');
   filter.classList.add('hidden');
@@ -18,3 +18,4 @@ var gallery = require('./gallery');
   };
   connect(DATA_BASE_URL, renderPictures);
 })();
+module.exports = showPictures;

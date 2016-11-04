@@ -7,7 +7,7 @@
 
 'use strict';
 
-(module.exports = function() {
+var upload = (function() {
   /** @enum {string} */
   var FileType = {
     'GIF': '',
@@ -319,3 +319,4 @@
   cleanupResizer();
   updateBackground();
 })();
+module.exports = upload;
