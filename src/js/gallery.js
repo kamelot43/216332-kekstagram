@@ -8,38 +8,38 @@ var Gallery = function() {
   this.overlayImage = document.querySelector('.gallery-overlay-image');//фотография с классом
   this.galleryLikes = document.querySelector('.likes-count');
   this.galleryComments = document.querySelector('.comments-count');
+  this.pictures = [];
 };
 /////////////////////////////////////////////////////////////////////
 //ДОБАВЛЕНИЕ МЕТОДА setPictures
-Gallery.prototype.setPictures = function(pictures) {
-  this.pictures = pictures;
+Gallery.prototype.setPictures = function(data) {
+  this.pictures = data;
 };
 
 ////////////////////////////////////////////////////////////////////
 //ДОБАВЛЕНИЕ МЕТОДА show
 Gallery.prototype.show = function(num) {
+  var that = this;
   this.elementPhoto.classList.remove('invisible');// Показывает фотогалерею, убирая у ее DOM-элемента класс invisible.
 //Обработчики событий (2 шт.):
   this.closeGallery.onclick = function() {
-    var that = this;
     that.hide();
   };
-  this.elementPhoto.onclick = function() {
-    var that = this;
+  this.overlayImage.onclick = function() {
     if (that.activePicture === that.pictures.length - 1) {
       that.setActivePicture(0);
     }else{
-      that.setActivePicture(num++);
+      that.setActivePicture(that.activePicture + 1);
     }
     this.setActivePicture(num);// Вызывает метод setActivePicture, передав в него параметром число, которое было передано параметром в show;
   };
-
 
 ////////////////////////////////////////////////////////////////////
 //ДОБАВЛЕНИЕ МЕТОДА hide :
   Gallery.prototype.hide = function() {
     this.elementPhoto.classList.add('invisible'); // Добавлет DOM-элементу фотогалереи класс invisible
     this.elementPhoto.onclick = null;
+    this.overlayImage.onclick = null;
     this.closeGallery.onclick = null;
   };
 ////////////////////////////////////////////////////////////////////

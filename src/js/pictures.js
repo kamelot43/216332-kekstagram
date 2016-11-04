@@ -1,5 +1,5 @@
 'use strict';
-var getPictureElement = require('./review');
+var getPictureElement = require('.picture');
 var connect = require('./load');
 var gallery = require('./gallery');
 
