@@ -16,8 +16,8 @@ var getPictureElement = function(picture, index) {
     pictureElement.classList.add('picture-load-failure');
   };
   pictureElement.onclick = function(event) {
-    event.preventDefault();
     gallery.show(index);
+    event.preventDefault();
   };
   return pictureElement;
 };
