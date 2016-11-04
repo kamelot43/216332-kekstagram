@@ -20,36 +20,37 @@ Gallery.prototype.setPictures = function(data) {
 //ДОБАВЛЕНИЕ МЕТОДА show
 Gallery.prototype.show = function(num) {
   var that = this;
-  this.elementPhoto.classList.remove('invisible');// Показывает фотогалерею, убирая у ее DOM-элемента класс invisible.
 //Обработчики событий (2 шт.):
-  this.closeGallery.onclick = function() {
-    that.hide();
-  };
   this.overlayImage.onclick = function() {
     if (that.activePicture === that.pictures.length - 1) {
       that.setActivePicture(0);
-    }else{
+    } else {
       that.setActivePicture(that.activePicture + 1);
     }
-    this.setActivePicture(num);// Вызывает метод setActivePicture, передав в него параметром число, которое было передано параметром в show;
   };
+  this.closeGallery.onclick = function() {
+    that.hide();
+  };
+  this.elementPhoto.classList.remove('invisible');// Показывает фотогалерею, убирая у ее DOM-элемента класс invisible.
+  this.setActivePicture(num);// Вызывает метод setActivePicture, передав в него параметром число, которое было передано параметром в show;
+};
 
 ////////////////////////////////////////////////////////////////////
 //ДОБАВЛЕНИЕ МЕТОДА hide :
-  Gallery.prototype.hide = function() {
-    this.elementPhoto.classList.add('invisible'); // Добавлет DOM-элементу фотогалереи класс invisible
-    this.elementPhoto.onclick = null;
-    this.overlayImage.onclick = null;
-    this.closeGallery.onclick = null;
-  };
+Gallery.prototype.hide = function() {
+  this.elementPhoto.classList.add('invisible'); // Добавлет DOM-элементу фотогалереи класс invisible
+  this.elementPhoto.onclick = null;
+  this.overlayImage.onclick = null;
+  this.closeGallery.onclick = null;
+};
 ////////////////////////////////////////////////////////////////////
 //ДОБАВЛЕНИЕ МЕТОДА setActivePicture :
-  Gallery.prototype.setActivePicture = function(number) {
-    this.activePicture = number;
-    this.overlayImage.src = this.pictures[this.activePicture].url;
-    this.galleryLikes = this.pictures[this.activePicture].likes;
-    this.galleryComments = this.pictures[this.activePicture].comments;
-  };
+Gallery.prototype.setActivePicture = function(number) {
+  this.activePicture = number;
+  this.overlayImage.src = this.pictures[this.activePicture].url;
+  this.galleryLikes.textContent = this.pictures[this.activePicture].likes;
+  this.galleryComments.textContent = this.pictures[this.activePicture].comments;
 };
+
 ///////////////////////////////////////////////////////////////////////
 module.exports = new Gallery();
