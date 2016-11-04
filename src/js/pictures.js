@@ -1,5 +1,5 @@
 'use strict';
-var getPictureElement = require('./picture');
+var Picture = require('./picture');
 var connect = require('./load');
 var gallery = require('./gallery');
 var showPictures = (function() {
@@ -9,7 +9,8 @@ var showPictures = (function() {
   var DATA_BASE_URL = 'http://localhost:1507/api/pictures';
   var renderPictures = function(pictures) {
     pictures.forEach(function(picture, index) {
-      container.appendChild(getPictureElement(picture, index));
+      var pictureElement = new Picture(picture, index);
+      container.appendChild((pictureElement.element));
     });
     filter.classList.remove('hidden');
     gallery.setPictures(pictures);

@@ -1,6 +1,6 @@
 'use strict';
 var gallery = require('./gallery');
-var getPictureElement = function(picture, index) {
+var getPictureElement = function(picture) {
   //Набор переменных для работы с модулем review.js
   var template = document.querySelector('template');
   var templateContainer = 'content' in template ? template.content : template;
@@ -15,10 +15,17 @@ var getPictureElement = function(picture, index) {
   image.onerror = function() {
     pictureElement.classList.add('picture-load-failure');
   };
-  pictureElement.onclick = function(event) {
+  return pictureElement;
+};
+var Picture = function(data, index) {
+  this.data = data;
+  this.element = getPictureElement(this.data, index);
+  this.element.onclick = function(event) {
     gallery.show(index);
     event.preventDefault();
   };
-  return pictureElement;
+  this.remove = function() {
+    this.element.onclick = null;
+  };
 };
-module.exports = getPictureElement;
+module.exports = Picture;
