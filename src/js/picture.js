@@ -29,3 +29,4 @@ var Picture = function(data, index) {
   };
 };
 module.exports = Picture;
+//Задание Второй класс выполненно в предедущем разделе(Галерея).
