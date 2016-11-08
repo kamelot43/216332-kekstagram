@@ -1,12 +1,13 @@
 'use strict';
-var connect = function(url, callback) {
+var connect = function(url, params, callback) {
   //Набор переменных для работы с модулем load.js
-  var callbackName = '__jsonpCallback' + Date.now();
-  window[callbackName] = function(data) {
-    callback(data);
+  //Добавление нового метода отправки запроса на сервер
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function(evt) {
+    var loadedData = JSON.parse(evt.target.response);
+    callback(loadedData);
   };
-  var script = document.createElement('script');
-  script.src = url + '?callback=' + callbackName;
-  document.body.appendChild(script);
+  xhr.open('GET', url + '?filter=' + params.filter + '&from=' + params.from + '&to=' + params.to);
+  xhr.send();
 };
 module.exports = connect;
