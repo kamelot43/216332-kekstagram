@@ -47,10 +47,11 @@ var showPictures = (function() {
     var GAP = 100;
     if (Date.now() - lastCall >= THROTTLE_TIMEOUT) {
       if (footer.getBoundingClientRect().bottom - window.innerHeight <= GAP) {
-        loadHotels(activeFilter, pageNumber++);
+        loadHotels(activeFilter, ++pageNumber);
       }
       lastCall = Date.now();
     }
   });
+  changeFilters(activeFilter);
 })();
 module.exports = showPictures;
