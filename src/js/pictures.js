@@ -10,7 +10,7 @@ var showPictures = (function() {
   var pageNumber = 0;
   var activeFilter = 'filter-popular';
   filter.classList.add('hidden');
-  var DATA_BASE_URL = 'http://localhost:1507/api/pictures';
+  var DATA_BASE_URL = '/api/pictures';
   var renderPictures = function(pictures) {
     pictures.forEach(function(picture, index) {
       var pictureElement = new Picture(picture, index);
@@ -28,18 +28,18 @@ var showPictures = (function() {
     }, renderPictures); //параметр 3 -функция отрисовки фотографий;
   };
   //Делигирование
-  var changeFilters = function(filterID) {
-    container.innerHTML = ''; // Очиcтка HTML
-    pageNumber = 0;
-    activeFilter = filterID;
-    loadHotels(filterID, pageNumber);
-  };
-  //Добавлен е обработчика событий(клика)на фильтры
+  //Добавление обработчика событий(клика)на фильтры
   filter.addEventListener('click', function(evt) {
-    if(evt.target.classList.contains('filters-radio')) { //Проверка условия
+    if (evt.target.classList.contains('filters-radio')) { //Проверка условия
       changeFilters(evt.target.id); //Передача параметром в функцию свойства id
     }
   });
+  var changeFilters = function(filterID) {
+    container.innerHTML = '';// Очиcтка HTML
+    activeFilter = filterID;
+    pageNumber = 0;
+    loadHotels(filterID, pageNumber);
+  };
   //Обработчик scroll
   var lastCall = Date.now();
   window.addEventListener('scroll', function() {

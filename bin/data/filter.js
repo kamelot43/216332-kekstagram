@@ -1,19 +1,22 @@
 'use strict';
 
-module.exports = function(list, filterID) {
-  switch (filterID) {
+  module.exports = function(list, filterID) {
+   switch (filterID) {
      case 'filter-popular':
-       return list.sort(function(a, b) {
+       list.sort(function(a, b) {
          return b.likes - a.likes;
        });
-       case 'filter-discussed':
-         return list.sort(function(a, b) {
-           return b.comments - a.comments;
-         });
-         case 'filter-new':
-           return list.sort(function(a, b) {
-             return b.created - a.created; //Откуда берется поле created ?
-           });
+       break;
+     case 'filter-new':
+       list.sort(function(a, b) {
+         return b.created - a.created;
+       });
+       break;
+     case 'filter-discussed':
+       list.sort(function(a, b) {
+         return b.comments - a.comments;
+       });
+       break;
    }
-   return list;
- };
+    return list;
+  };
