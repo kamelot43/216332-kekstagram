@@ -79,7 +79,13 @@ var upload = (function() {
   coordinateX.min = 0;
   coordinateY.min = 0;
   coordinateSize.min = 0;
+  var someForm = document.getElementById('upload-resize');
 
+  someForm.addEventListener('input', function(evt) {
+    if (evt.target.classList.contains('upload-resize-control')) {
+      validationForm();
+    }
+  });
   var validationForm = function() {
     var x = Number(coordinateX.value);
     var y = Number(coordinateY.value);
@@ -92,44 +98,24 @@ var upload = (function() {
       resizeFwd.disabled = false;
     }
   };
-  coordinateX.oninput = function() {
-    validationForm();
-  };
-  coordinateY.oninput = function() {
-    validationForm();
-  };
-  coordinateSize.oninput = function() {
-    validationForm();
-  };
 
   var resizeFormIsValid = function() {
     return true;
   };
-  //Объявление переменных для работы с cookies.
-  var filter = document.getElementsByName('upload-filter');
-  var original = document.querySelector('#upload-filter-none');
-  var chrome = document.querySelector('#upload-filter-chrome');
-  var sepia = document.querySelector('#upload-filter-sepia');
-  var marvin = document.querySelector('#upload-filter-marvin');
 
-  //Добавление обработчика событий при клике на выбранный фильтр.
-  original.addEventListener('click', createCookies);
-  chrome.addEventListener('click', createCookies);
-  sepia.addEventListener('click', createCookies);
-  marvin.addEventListener('click', createCookies);
-
-  var createCookies = function() {
-   //введение дополнительных переменных для вычисления времени.
-    var day = 1000 * 60 * 60 * 24;
-    var today = new Date();
-    var timeToday = today.getTime();
-    var birthday = new Date(today.getFullYear(), 12, 9);
-    var timeBirthday = birthday.getTime();
-    var timeIsUp = Math.round((timeToday - timeBirthday) / day);
-    if (filter.checked === true) {
-      window.Cookies.set('upload-filter', 'filter.value', { expires: timeIsUp});
+  var filters = document.getElementById('upload-filter');
+  filters.addEventListener('click', function(evt) {
+    if(evt.target.name === 'upload-filter' && evt.target.checked === true) { //Проверка условия
+      var day = 1000 * 60 * 60 * 24;
+      var today = new Date();
+      var timeToday = today.getTime();
+      var birthday = new Date(today.getFullYear(), 12, 9);
+      var timeBirthday = birthday.getTime();
+      var timeIsUp = Math.round((timeToday - timeBirthday) / day);
+      window.Cookies.set('upload-filter', 'evt.target.value', { expires: timeIsUp});
     }
-  };
+  });
+
   /**
    * Форма загрузки изображения.
    * @type {HTMLFormElement}
