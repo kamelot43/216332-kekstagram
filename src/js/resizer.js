@@ -109,41 +109,37 @@ var resizer = (function() {
         this._resizeConstraint.side - this._ctx.lineWidth / 2,
         this._resizeConstraint.side - this._ctx.lineWidth / 2);
 
-      // Восстановление состояния канваса, которое было до вызова ctx.save
-      // и последующего изменения системы координат. Нужно для того, чтобы
-      // следующий кадр рисовался с привычной системой координат, где точка
-      // 0 0 находится в левом верхнем углу холста, в противном случае
-      // некорректно сработает даже очистка холста или нужно будет использовать
-      // сложные рассчеты для координат прямоугольника, который нужно очистить.
-      //Верхняя горизонтальная линия
-      for (var j = 0; j < 19; j++) {
-        this._ctx.strokeStyle = 'yellow';
-        this._ctx.beginPath();
-        this._ctx.arc(-this._resizeConstraint.side / 2 + j * 25, -this._resizeConstraint.side / 2, 2, 0, Math.PI * 2, true);
-        this._ctx.stroke();
+      //Отрисовка рамки в виде точек
+      var that = this;
+      var drawCircle = function(x, y) {
+        var radius = 2;
+        that._ctx.beginPath();
+        that._ctx.arc(x, y, radius, 0, Math.PI * 2, true);
+        that._ctx.stroke();
+      };
+      var side = this._resizeConstraint.side / 2 - this._ctx.lineWidth / 2;
+      this._ctx.strokeStyle = 'yellow';
+      var dotX = -side;
+      var dotY = dotX;
+      while (dotX < side) {
+        drawCircle(dotX, dotY);
+        dotX += 25;
       }
-      //Нижняя горизонтальная линия
-      for ( j = 0; j < 19; j++) {
-        this._ctx.strokeStyle = 'yellow';
-        this._ctx.beginPath();
-        this._ctx.arc(-this._resizeConstraint.side / 2 + j * 25, this._resizeConstraint.side / 2, 2, 0, Math.PI * 2, true);
-        this._ctx.stroke();
+      dotX = side;
+      while (dotY < side) {
+        drawCircle(dotX, dotY);
+        dotY += 25;
       }
-      //Левая вертикальная линия
-      for (var i = 0; i < 19; i++) {
-        this._ctx.strokeStyle = 'yellow';
-        this._ctx.beginPath();
-        this._ctx.arc(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 + i * 25, 2, 0, Math.PI * 2, true);
-        this._ctx.stroke();
+      dotY = side;
+      while (dotX > -side) {
+        drawCircle(dotX, dotY);
+        dotX -= 25;
       }
-      //Правая вертикальная линия
-      for ( i = 0; i < 19; i++) {
-        this._ctx.strokeStyle = 'yellow';
-        this._ctx.beginPath();
-        this._ctx.arc(this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 + i * 25, 2, 0, Math.PI * 2, true);
-        this._ctx.stroke();
+      dotX = -side;
+      while (dotY > -side) {
+        drawCircle(dotX, dotY);
+        dotY -= 25;
       }
-
       this._ctx.beginPath();
       this._ctx.fillStyle = 'rgba(0,0,0,0.7)';
       this._ctx.rect(displX, displY, this._container.width, this._container.height);
