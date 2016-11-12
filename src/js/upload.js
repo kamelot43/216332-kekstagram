@@ -76,16 +76,35 @@ var upload = (function() {
   var coordinateY = document.querySelector('#resize-y');
   var coordinateSize = document.querySelector('#resize-size');
   var resizeFwd = document.getElementById('resize-fwd');
+  var resizeControls = document.getElementById('upload-resize');
+  var filtersForm = document.getElementById('upload-resize');
   coordinateX.min = 0;
   coordinateY.min = 0;
   coordinateSize.min = 0;
-  var formFilter = document.getElementById('upload-resize');
 
-  formFilter.addEventListener('input', function(evt) {
+  //Обновление значений.Смещение и размер кадра.
+  window.addEventListener('resizerchange', function() {
+    coordinateX.value = currentResizer.getConstraint().x;
+    coordinateY.value = currentResizer.getConstraint().y;
+    coordinateSize.value = currentResizer.getConstraint().side;
+  });
+
+  resizeControls.addEventListener('input', function(evt) {
+    if (evt.target.classList.contains('upload-resize-control')) {
+      validationForm();
+      var valueX = Number(coordinateX.value);
+      var valueY = Number(coordinateY.value);
+      var valueSize = Number(coordinateSize.value);
+      currentResizer.setConstraint(valueX, valueY, valueSize);
+    }
+  });
+
+  filtersForm.addEventListener('input', function(evt) {
     if (evt.target.classList.contains('upload-resize-control')) {
       validationForm();
     }
   });
+
   var validationForm = function() {
     var x = Number(coordinateX.value);
     var y = Number(coordinateY.value);
