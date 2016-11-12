@@ -77,7 +77,7 @@ var upload = (function() {
   var coordinateSize = document.querySelector('#resize-size');
   var resizeFwd = document.getElementById('resize-fwd');
   var resizeControls = document.getElementById('upload-resize');
-  var filtersForm = document.getElementById('upload-resize');
+
   coordinateX.min = 0;
   coordinateY.min = 0;
   coordinateSize.min = 0;
@@ -91,36 +91,24 @@ var upload = (function() {
 
   resizeControls.addEventListener('input', function(evt) {
     if (evt.target.classList.contains('upload-resize-control')) {
-      validationForm();
       var valueX = Number(coordinateX.value);
       var valueY = Number(coordinateY.value);
       var valueSize = Number(coordinateSize.value);
+      resizeFormIsValid(valueX, valueY, valueSize);
       currentResizer.setConstraint(valueX, valueY, valueSize);
     }
   });
 
-  filtersForm.addEventListener('input', function(evt) {
-    if (evt.target.classList.contains('upload-resize-control')) {
-      validationForm();
-    }
-  });
-
-  var validationForm = function() {
-    var x = Number(coordinateX.value);
-    var y = Number(coordinateY.value);
-    var size = Number(coordinateSize.value);
+  var resizeFormIsValid = function(paramX, paramY, paramSize) {
     var imageWidth = currentResizer._image.naturalWidth;
     var imageHeight = currentResizer._image.naturalHeight;
-    if ((x + size > imageWidth) || (y + size > imageHeight)) {
+    if ((paramX + paramSize > imageWidth) || (paramY + paramSize > imageHeight)) {
       resizeFwd.disabled = true;
     } else {
       resizeFwd.disabled = false;
     }
   };
 
-  var resizeFormIsValid = function() {
-    return true;
-  };
 
   var filters = document.getElementById('upload-filter');
   filters.addEventListener('click', function(evt) {
