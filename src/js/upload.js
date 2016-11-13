@@ -82,6 +82,16 @@ var upload = (function() {
   coordinateY.min = 0;
   coordinateSize.min = 0;
 
+
+  var validationForm = function(paramX, paramY, paramSize) {
+    var imageWidth = currentResizer._image.naturalWidth;
+    var imageHeight = currentResizer._image.naturalHeight;
+    if ((paramX + paramSize > imageWidth) || (paramY + paramSize > imageHeight)) {
+      resizeFwd.disabled = true;
+    } else {
+      resizeFwd.disabled = false;
+    }
+  };
   //Обновление значений.Смещение и размер кадра.
   window.addEventListener('resizerchange', function() {
     coordinateX.value = currentResizer.getConstraint().x;
@@ -94,21 +104,15 @@ var upload = (function() {
       var valueX = Number(coordinateX.value);
       var valueY = Number(coordinateY.value);
       var valueSize = Number(coordinateSize.value);
-      resizeFormIsValid(valueX, valueY, valueSize);
+      validationForm(valueX, valueY, valueSize);
       currentResizer.setConstraint(valueX, valueY, valueSize);
     }
   });
 
-  var resizeFormIsValid = function(paramX, paramY, paramSize) {
-    var imageWidth = currentResizer._image.naturalWidth;
-    var imageHeight = currentResizer._image.naturalHeight;
-    if ((paramX + paramSize > imageWidth) || (paramY + paramSize > imageHeight)) {
-      resizeFwd.disabled = true;
-    } else {
-      resizeFwd.disabled = false;
-    }
-  };
 
+  var resizeFormIsValid = function() {
+    return true;
+  };
 
   var filters = document.getElementById('upload-filter');
   filters.addEventListener('click', function(evt) {
@@ -190,14 +194,14 @@ var upload = (function() {
   uploadForm.addEventListener('change', function(evt) {
     var element = evt.target;
     if (element.id === 'upload-file') {
-      // Проверка типа загружаемого файла, тип должен быть изображением
-      // одного из форматов: JPEG, PNG, GIF или SVG.
+       // Проверка типа загружаемого файла, тип должен быть изображением
+       // одного из форматов: JPEG, PNG, GIF или SVG.
       if (fileRegExp.test(element.files[0].type)) {
         var fileReader = new FileReader();
 
         showMessage(Action.UPLOADING);
 
-        fileReader.onload = function() {
+        fileReader.addEventListener('load', function() {
           cleanupResizer();
 
           currentResizer = new Resizer(fileReader.result);
@@ -208,15 +212,16 @@ var upload = (function() {
           resizeForm.classList.remove('invisible');
 
           hideMessage();
-        };
+        });
 
         fileReader.readAsDataURL(element.files[0]);
       } else {
-        // Показ сообщения об ошибке, если формат загружаемого файла не поддерживается
+         // Показ сообщения об ошибке, если формат загружаемого файла не поддерживается
         showMessage(Action.ERROR);
       }
     }
   });
+
 
   /**
    * Обработка сброса формы кадрирования. Возвращает в начальное состояние
