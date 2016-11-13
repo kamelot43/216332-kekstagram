@@ -7,7 +7,12 @@
          return b.likes - a.likes;
        });
        break;
-     case 'filter-new':
+       case 'filter-new':
+       return list.filter(function(data) {
+         if(Date.now() - data.created <= (3 * 24 * 60 * 60 * 1000)) {
+           return data;
+         }
+       })
        list.sort(function(a, b) {
          return b.created - a.created;
        });
