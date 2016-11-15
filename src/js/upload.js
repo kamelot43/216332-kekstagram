@@ -94,16 +94,16 @@ var upload = (function() {
   };
   //Обновление значений.Смещение и размер кадра.
   window.addEventListener('resizerchange', function() {
-    coordinateX.value = currentResizer.getConstraint().x;
-    coordinateY.value = currentResizer.getConstraint().y;
-    coordinateSize.value = currentResizer.getConstraint().side;
+    coordinateX.value = Math.round(currentResizer.getConstraint().x);
+    coordinateY.value = Math.round(currentResizer.getConstraint().y);
+    coordinateSize.value = Math.round(currentResizer.getConstraint().side);
   });
 
   resizeControls.addEventListener('input', function(evt) {
     if (evt.target.classList.contains('upload-resize-control')) {
-      var valueX = Number(coordinateX.value);
-      var valueY = Number(coordinateY.value);
-      var valueSize = Number(coordinateSize.value);
+      var valueX = parseInt(coordinateX.value, 10);
+      var valueY = parseInt(coordinateY.value, 10);
+      var valueSize = parseInt(coordinateSize.value, 10);
       validationForm(valueX, valueY, valueSize);
       currentResizer.setConstraint(valueX, valueY, valueSize);
     }
