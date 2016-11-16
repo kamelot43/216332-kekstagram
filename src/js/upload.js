@@ -76,6 +76,7 @@ var upload = (function() {
   var coordinateY = document.querySelector('#resize-y');
   var coordinateSize = document.querySelector('#resize-size');
   var resizeFwd = document.getElementById('resize-fwd');
+  resizeFwd.disabled = false;
   var resizeControls = document.getElementById('upload-resize');
 
   coordinateX.min = 0;
@@ -83,15 +84,6 @@ var upload = (function() {
   coordinateSize.min = 0;
 
 
-  var validationForm = function(paramX, paramY, paramSize) {
-    var imageWidth = currentResizer._image.naturalWidth;
-    var imageHeight = currentResizer._image.naturalHeight;
-    if ((paramX + paramSize > imageWidth) || (paramY + paramSize > imageHeight)) {
-      resizeFwd.disabled = true;
-    } else {
-      resizeFwd.disabled = false;
-    }
-  };
   //Обновление значений.Смещение и размер кадра.
   window.addEventListener('resizerchange', function() {
     coordinateX.value = Math.round(currentResizer.getConstraint().x);
@@ -109,9 +101,17 @@ var upload = (function() {
     }
   });
 
-
   var resizeFormIsValid = function() {
     return true;
+  };
+  var validationForm = function(paramX, paramY, paramSize) {
+    var imageWidth = currentResizer._image.naturalWidth;
+    var imageHeight = currentResizer._image.naturalHeight;
+    if ((paramX + paramSize > imageWidth) || (paramY + paramSize > imageHeight)) {
+      resizeFwd.disabled = true;
+    } else {
+      resizeFwd.disabled = false;
+    }
   };
 
   var filters = document.getElementById('upload-filter');
